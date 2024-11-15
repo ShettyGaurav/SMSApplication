@@ -1,0 +1,184 @@
+/* ClientLists.css */
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #D6BD98, #40534C, #5B7065, #8C7A5B);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+  }
+  
+  @keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+  
+  #client-container {
+    background-color: rgba(214, 189, 152, 0.2);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 8px 32px 0 rgba(64, 83, 76, 0.37);
+    max-width: 600px;
+    width: 100%;
+    box-sizing: border-box;
+    animation: fadeIn 1s ease-out;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  #input {
+    width: calc(50% - 10px);
+    padding: 12px;
+    margin-bottom: 15px;
+    border: none;
+    border-radius: 25px;
+    background-color: rgba(214, 189, 152, 0.3);
+    color: #40534C;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(64, 83, 76, 0.1);
+  }
+  
+  #input::placeholder {
+    color: rgba(64, 83, 76, 0.7);
+  }
+  
+  #input:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(64, 83, 76, 0.5);
+    background-color: rgba(214, 189, 152, 0.5);
+  }
+  
+  #add-client-button, #send-every-button {
+    background-color: #40534C;
+    color: #D6BD98;
+    border: none;
+    padding: 12px 20px;
+    margin: 5px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(64, 83, 76, 0.2);
+  }
+  
+  #add-client-button:hover, #send-every-button:hover {
+    background-color: #5B7065;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(64, 83, 76, 0.3);
+  }
+  
+  #add-client-button:active, #send-every-button:active {
+    transform: translateY(-1px);
+  }
+  
+  #name-para, #phone-para {
+    color: #40534C;
+    margin: 5px 0;
+    font-size: 18px;
+    text-shadow: 1px 1px 3px rgba(214, 189, 152, 0.3);
+  }
+  
+  #client-card {
+    background-color: rgba(214, 189, 152, 0.2);
+    border-radius: 15px;
+    padding: 20px;
+    margin-top: 20px;
+    box-shadow: 0 4px 15px rgba(64, 83, 76, 0.1);
+    transition: all 0.3s ease;
+    animation: cardPulse 2s infinite alternate;
+  }
+  
+  @keyframes cardPulse {
+    from { box-shadow: 0 0 5px #D6BD98, 0 0 10px #D6BD98, 0 0 15px #D6BD98; }
+    to { box-shadow: 0 0 10px #8C7A5B, 0 0 20px #8C7A5B, 0 0 30px #8C7A5B; }
+  }
+  
+  #client-card:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 8px 25px rgba(64, 83, 76, 0.2);
+  }
+  
+  #client-phone-button, #client-delete-button, #client-edit-button {
+    background-color: #5B7065;
+    color: #D6BD98;
+    border: none;
+    padding: 10px 15px;
+    margin: 5px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.3s ease;
+  }
+  
+  #client-phone-button:hover { background-color: #6B8075; }
+  #client-delete-button:hover { background-color: #8C7A5B; }
+  #client-edit-button:hover { background-color: #7B6A4B; }
+  
+  @media (max-width: 600px) {
+    #client-container {
+      padding: 20px;
+      margin: 20px;
+    }
+  
+    #input {
+      width: 100%;
+    }
+  
+    #add-client-button, #send-every-button {
+      width: 100%;
+      margin: 5px 0;
+    }
+  }
+  
+  /* Button click animation */
+  @keyframes buttonClick {
+    0% { transform: scale(1); }
+    50% { transform: scale(0.95); }
+    100% { transform: scale(1); }
+  }
+  
+  #add-client-button:active, #send-every-button:active,
+  #client-phone-button:active, #client-delete-button:active, #client-edit-button:active {
+    animation: buttonClick 0.3s ease;
+  }
+  
+  /* Floating animation for client cards */
+  @keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+  }
+  
+  #client-card {
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  /* Shimmering effect for input fields */
+  @keyframes shimmer {
+    0% { background-position: -1000px 0; }
+    100% { background-position: 1000px 0; }
+  }
+  
+  #input {
+    background-image: linear-gradient(
+      to right,
+      rgba(214, 189, 152, 0.3) 0%,
+      rgba(214, 189, 152, 0.5) 50%,
+      rgba(214, 189, 152, 0.3) 100%
+    );
+    background-size: 1000px 100%;
+    animation: shimmer 3s infinite;
+    background-repeat: no-repeat;
+    background-position: 0 0;
+  }

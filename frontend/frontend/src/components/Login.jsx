@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import './css/login.css'
 
 const Login = ({setIsLoggedIn}) => {
   const [email, setEmail] = useState("");
@@ -28,12 +29,13 @@ const Login = ({setIsLoggedIn}) => {
   };
 
   return (
-    <div>
+    <div id="login-container">
       <h2>Login</h2>
       <form onSubmit={handleSubmit}>
         <div>
           <label>Email:</label>
           <input
+          id="input"
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -44,6 +46,7 @@ const Login = ({setIsLoggedIn}) => {
         <div>
           <label>Password:</label>
           <input
+          id="input"
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
@@ -51,10 +54,10 @@ const Login = ({setIsLoggedIn}) => {
           />
         </div>
 
-        <button type="submit">Login</button>
+        <button id="button" type="submit">Login</button>
       </form>
 
-      {message && <p>{message}</p>}
+      {message && <p id="para">{message}</p>}
     </div>
   );
 };
