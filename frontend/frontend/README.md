@@ -1,8 +1,21 @@
-# React + Vite
+git clone https://github.com/ShettyGaurav/SMSApplication.git
+cd SMS-backend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+npm install
 
-Currently, two official plugins are available:
+create a .env file 
+REPLACE WITH YOUR CREDINTIALS
+TWILIO_ACCOUNT_SID=YOUR_SID
+TWILIO_AUTH_TOKEN=YOUR_AUTH_TOKEN
+TWILIO_PHONE_NUMBER=  YOUR-NUMBER
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+
+npm start
+
+#create a separate terminal 
+
+cd frontend/frontend
+
+npm install
+
+npm run dev
