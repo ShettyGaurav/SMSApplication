@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useRef } from "react";
 import { useEffect } from "react";
+import './css/ClientLists.css'
 
 const ClientList = () => {
   const [clients, setClients] = useState([]);
@@ -101,21 +102,39 @@ const ClientList = () => {
     }
   };
   return (
-    <div>
-      <input type="text" placeholder="Enter name of Client" ref={nameRef} />
-      <input type="text" placeholder="Enter phone of a client" ref={phoneRef} />
-      <button onClick={() => handleAddClient()}>Add Client</button>
-      <button onClick={() => sendEvery()}>Send message to Every Client</button>
+    <div id="client-container">
+      <input
+        id="input"
+        type="text"
+        placeholder="Enter name of Client"
+        ref={nameRef}
+      />
+      <input
+        id="input"
+        type="text"
+        placeholder="Enter phone of a client"
+        ref={phoneRef}
+      />
+      <button id="add-client-button" onClick={() => handleAddClient()}>
+        Add Client
+      </button>
+      <button id="send-every-button" onClick={() => sendEvery()}>
+        Send message to Every Client
+      </button>
       {clients.map((client) => {
         return (
-          <div>
-            <p>{client.name}</p>
-            <p>{client.phone}</p>
-            <button onClick={() => handleClick(client.phone)}>
+          <div id="client-card">
+            <p id="name-para">{client.name}</p>
+            <p id="phone-para">{client.phone}</p>
+            <button id="client-phone-button" onClick={() => handleClick(client.phone)}>
               Send Message
             </button>
-            <button onClick={() => handleDelete(client.phone)}>Delete</button>
-            <button onClick={() => handleEdit(client.phone)}>Edit</button>
+            <button id="client-delete-button" onClick={() => handleDelete(client.phone)}>
+              Delete
+            </button>
+            <button id="client-edit-button" onClick={() => handleEdit(client.phone)}>
+              Edit
+            </button>
           </div>
         );
       })}
