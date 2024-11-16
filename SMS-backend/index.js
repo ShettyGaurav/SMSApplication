@@ -13,7 +13,7 @@ app.use(express.json());
 app.use(cors());
 mongoose
   .connect(
-    "mongodb+srv://gaurav:Ramos1234@cluster0.6hpd9.mongodb.net/SMS?retryWrites=true&w=majority&appName=Cluster0"
+    ""
   )
   .then(() => {
     console.log("DB connected");
