@@ -5,12 +5,16 @@ import bcrypt from "bcryptjs";
 import mongoose from "mongoose";
 import User from "./model/user.js"; // Import your User model
 import client from "./model/client.js";
+import path from "path";
 
-import message from './routes/message.js'
+import message from "./routes/message.js";
+
 
 const app = express();
 app.use(express.json());
 app.use(cors());
+
+
 mongoose
   .connect(
     "mongodb+srv://gaurav:Ramos1234@cluster0.6hpd9.mongodb.net/SMS?retryWrites=true&w=majority&appName=Cluster0"
@@ -19,7 +23,7 @@ mongoose
     console.log("DB connected");
   });
 
-// 
+//
 app.post("/signup", async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -81,7 +85,9 @@ app.post("/clients/edit", async (req, res) => {
     if (newPhone && newPhone !== phone) {
       const phoneTaken = await client.findOne({ phone: newPhone });
       if (phoneTaken) {
-        return res.status(400).json({ error: "New phone number is already in use" });
+        return res
+          .status(400)
+          .json({ error: "New phone number is already in use" });
       }
     }
 
@@ -100,7 +106,6 @@ app.post("/clients/edit", async (req, res) => {
   }
 });
 
-
 app.post("/clients/add", async (req, res) => {
   console.log("Server hit to add client");
   const { name, phone } = req.body;
@@ -114,37 +119,40 @@ app.post("/clients/add", async (req, res) => {
     const user = new client({ name: name, phone: phone });
     await user.save(); // Respond with a success message
     const clients = await client.find({});
-    res.status(201).json({ message: "Client Added successfully",clients:clients });
+    res
+      .status(201)
+      .json({ message: "Client Added successfully", clients: clients });
   } catch (error) {
     console.error("Error adding client:", error);
     res.status(500).json({ message: "Server error" });
   }
 });
 
-app.post("/clients/remove",async (req,res)=>{
-    const {phone} = req.body
-    const result = await client.deleteOne({ phone: phone });
+app.post("/clients/remove", async (req, res) => {
+  const { phone } = req.body;
+  const result = await client.deleteOne({ phone: phone });
+  const clients = await client.find({});
+
+  if (result.deletedCount === 0) {
+    return res.status(404).json({ error: "User not found", clients: clients });
+  }
+
+  // Respond with a success message
+  return res
+    .status(200)
+    .json({ message: "User deleted successfully", clients: clients });
+});
+
+app.get("/get-all-clients", async (req, res) => {
+  try {
     const clients = await client.find({});
+    res.status(200).json(clients);
+  } catch (error) {
+    console.log(error);
+  }
+});
 
-    if (result.deletedCount === 0) {
-      return res.status(404).json({ error: 'User not found' ,clients:clients});
-    }
-
-    // Respond with a success message
-    return res.status(200).json({ message: 'User deleted successfully',clients:clients});
-})
-
-app.get("/get-all-clients",async (req,res)=>{
-    try {
-      const clients = await client.find({});
-    res.status(200).json(clients)
-    } catch (error) {
-      console.log(error);
-    }    
-})
-
-app.use('/message',message)
-
+app.use("/message", message);
 
 app.listen(3000, () => {
   console.log("Server is running on port 3000");
